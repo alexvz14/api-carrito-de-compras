@@ -1,0 +1,30 @@
+{
+  "name": "carrito-de-compras",
+  "version": "1.0.0",
+  "description": "Carrito de compras",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "dev": "nodemon index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/alexvz1/carrito-de-compras.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/alexvz1/carrito-de-compras/issues"
+  },
+  "homepage": "https://github.com/alexvz1/carrito-de-compras#readme",
+  "dependencies": {
+    "fastify": "^3.1.1",
+    "fastify-cors": "^2.2.0",
+    "fastify-routes": "^2.0.3",
+    "mongoose": "^5.9.26"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.4"
+  }
+}
