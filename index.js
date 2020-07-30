@@ -1,14 +1,17 @@
 const config = require('./config/config');
 // Require the framework and instantiate it
 const server = require('fastify')({ logger: true });
-const routes = require('fastify-routes');
+//const routes = require('fastify-routes');
 const cors = require('fastify-cors');
+const db = require('./integrations/mongodb');
+
+//DB
+db.connect();
 
 server.register(cors);
-server.register(routes);
 
 //Routes
-require('./modules/products/routes')(server);
+server.register(require('./modules/products/routes'), { prefix: '/api' })
 
 server.listen(config.PORT, error => {
   if(error){

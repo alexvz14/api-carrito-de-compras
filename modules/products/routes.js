@@ -1,5 +1,6 @@
 const ProductsController = require('./controllers/productsController');
 
-module.exports = server => {
-    server.get('/productos', ProductsController.index)
+module.exports = function (fastify, opts, done) {
+  fastify.get('/products', ProductsController.index);
+  done();
 }
