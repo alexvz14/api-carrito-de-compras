@@ -12,6 +12,7 @@ server.register(cors);
 
 //Routes
 server.register(require('./modules/products/routes'), { prefix: '/api' })
+server.register(require('./modules/cart/routes'), { prefix: '/api' })
 
 server.listen(config.PORT, error => {
   if(error){
