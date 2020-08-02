@@ -42,9 +42,10 @@ exports.create = async (request, reply) => {
       if(productFound){
         return reply.status(400).send('Este produto ya se encuentra en el carrito');
       }
+
       const total_mxn = carexists.total_mxn + product.price_mxn;
       const total_usd = carexists.total_usd + product.price_usd;
-      await carexists.updateOne({ total_mxn: total_mxn, total_usd: total_usd }, { $push: { items: {product: product.id, model: model,  status: 'Reservado'} } });
+      await carexists.updateOne({ total_mxn: total_mxn, total_usd: total_usd, $push: { items: {product: product.id, model: model,  status: 'Reservado'} } });
     }
 
     reply.status(201).send('ok'); 
@@ -62,7 +63,7 @@ exports.get = async (request, reply) => {
       return reply.status(500).send('Este carrito no está disponible');
     }
 
-    const car = await CartModel.findOne({token:token}).populate('items.product', 'name price_mxn price_usd');
+    const car = await CartModel.findOne({token:token}).populate('items.product', 'name maker models price_mxn price_usd');
 
     reply.status(201).send(car);
 
