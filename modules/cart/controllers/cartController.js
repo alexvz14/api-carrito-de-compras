@@ -60,7 +60,7 @@ exports.get = async (request, reply) => {
     const {token, currency} = request.params;
     let carexists = await CartModel.findOne({token:token});
     if(!carexists) {
-      return reply.status(500).send('Este carrito no está disponible');
+      return reply.status(404).send('Este carrito no está disponible');
     }
 
     const car = await CartModel.findOne({token:token}).populate('items.product', 'name maker models price_mxn price_usd');
@@ -77,7 +77,7 @@ exports.checkout = async (request, reply) => {
     const {token} = request.params;
     let carexists = await CartModel.findOne({token:token});
     if(!carexists) {
-      return reply.status(500).send('Este carrito no está disponible');
+      return reply.status(404).send('Este carrito no está disponible');
     }
 
     await CartModel.updateMany({token:token},{ $set: { "items.$[].status" : 'Comprado'} })
