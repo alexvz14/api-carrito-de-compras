@@ -101,11 +101,19 @@ exports.deleteItemCart = async (request, reply) => {
     if(!productFound){
       return reply.status(404).send('Este produto no se encuentra en el carrito');
     }
+    
+    let product = await ProductModel.findById(item);
+    if(!product){
+      return reply.status(404).send('Este produto no se encuentra en el carrito');
+    }
+    const total_mxn = carexists.total_mxn - product.price_mxn;
+    const total_usd = carexists.total_usd - product.price_usd;
 
-    await CartModel.updateMany({  token:token }, { $pull: { "items": { product: item } } })
+    await CartModel.updateMany({  token:token }, {  total_mxn: total_mxn, total_usd: total_usd, $pull: { "items": { product: item } } })
 
     reply.status(200).send('ok');
   } catch (error) {
+    //console.log(error)
     reply.status(500).send('Hubo un error');
   }
 }
