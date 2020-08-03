@@ -87,3 +87,25 @@ exports.checkout = async (request, reply) => {
     reply.status(500).send('Hubo un error');
   }
 }
+
+exports.deleteItemCart = async (request, reply) => {
+  try {
+    const {token, item} = request.body;
+    let carexists = await CartModel.findOne({token:token});
+
+    if(!carexists) {
+      return reply.status(404).send('Este carrito no está disponible');
+    }
+
+    const productFound =  carexists.items.find(element => element.product == item);
+    if(!productFound){
+      return reply.status(404).send('Este produto no se encuentra en el carrito');
+    }
+
+    await CartModel.updateMany({  token:token }, { $pull: { "items": { product: item } } })
+
+    reply.status(200).send('ok');
+  } catch (error) {
+    reply.status(500).send('Hubo un error');
+  }
+}
