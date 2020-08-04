@@ -1,0 +1,10 @@
+_id,name,maker,car_type,price_mxn,price_usd,description_es,description_en,models
+ObjectId("5efe5f07dbef99b3bde32ca9"),Mustang,Ford,Affordable,869000,34669.99,Auto deportivo económico,Affordable Sports Car,"["Red","Black","Gray"]"
+ObjectId("5efe620bdbef99b3bde32cad"),Supra,Toyota,Luxury,1074750,42990,Auto deportivo de lujo,Luxury Sports Car,"[]"
+ObjectId("5efe62b3dbef99b3bde32cae"),MX-5,Mazda,Affordable,405000,16200,Roadster dinámico,Dynamic Roadster,"["Red","White"]"
+ObjectId("5efe636cdbef99b3bde32caf"),Model S,Tesla,Luxury,1825000,72999.99,Automovil eléctrico,Electric Car,"[]"
+ObjectId("5efe64a8dbef99b3bde32cb1"),Corvette,Chevrolet,Luxury,1704000,68160,Auto deportivo,Sports Car,"["Blue","White"]"
+ObjectId("5efe653fdbef99b3bde32cb2"),911,Porsche,Luxury,1918000,76720,Auto deportivo de lujo,Luxury Sports Car,"[]"
+ObjectId("5efe6674dbef99b3bde32cb3"),Z4,BMW,Affordable,9000000,36000,Auto deportivo económico,Affordable Sports Car,"["Black","Green"]"
+ObjectId("5efe66c9dbef99b3bde32cb4"),Camaro,Chevrolet,Affordable,700000,28000,Auto deportivo económico,Affordable Sports Car,"["Blue","White"]"
+ObjectId("5efe6724dbef99b3bde32cb5"),WRX,Subaru,Affordable,600000,23999,Auto deportivo económico,Affordable Sports Car,"[]"
