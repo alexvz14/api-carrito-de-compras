@@ -117,3 +117,53 @@ exports.deleteItemCart = async (request, reply) => {
     reply.status(500).send('Hubo un error');
   }
 }
+
+
+exports.updateItemCart = async (request, reply) => {
+  console.log('update')
+  try {
+    const {token, item, model} = request.body;
+    let carexists = await CartModel.findOne({token:token});
+
+    if(!carexists) {
+      return reply.status(404).send('Este carrito no está disponible');
+    }
+
+    const productFound =  carexists.items.find(element => element.product == item);
+    if(!productFound){
+      return reply.status(404).send('Este produto no se encuentra en el carrito');
+    }
+    
+    let product = await ProductModel.findById(item);
+    if(!product){
+      return reply.status(400).send('Este produto no se encuentra disponible');
+    }
+
+    //Validaciones de modelo
+    const hasModels = product.models.length > 0 ? true : false;
+    if(hasModels && model == ''){
+      return reply.status(400).send('Debe seleccionar un modelo');
+    }
+
+    if(!hasModels && model != ''){
+      return reply.status(400).send('Este producto no tiene modelos');
+    }
+
+    if(hasModels){
+      const modelFound = product.models.find(element => element == model);
+      if(!modelFound){
+        return reply.status(400).send('Este modelo no está disponible');
+      }
+    }
+
+    const total_mxn = carexists.total_mxn - product.price_mxn;
+    const total_usd = carexists.total_usd - product.price_usd;
+
+    await CartModel.updateMany({token:token, "items.product": item  },{ $set: { "items.$.model" : model} })
+
+    reply.status(200).send('ok');
+  } catch (error) {
+    //console.log(error)
+    reply.status(500).send('Hubo un error');
+  }
+}
