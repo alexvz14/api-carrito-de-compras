@@ -19,7 +19,7 @@
   },
   "homepage": "https://github.com/alexvz1/carrito-de-compras#readme",
   "dependencies": {
-    "fastify": "^3.1.1",
+    "fastify": "^3.29.4",
     "fastify-cors": "^2.2.0",
     "fastify-routes": "^2.0.3",
     "mongoose": "^5.9.26"
